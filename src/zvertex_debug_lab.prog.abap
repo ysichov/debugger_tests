@@ -22,8 +22,8 @@ TYPES: BEGIN OF ty_context,
          tax_amount       TYPE decfloat34,
        END OF ty_context,
        BEGIN OF ty_step,
-         step_no TYPE i,
-         name    TYPE char30,
+         step_no TYPE zlog_pipeline-step_no,
+         name    TYPE zlog_pipeline-modifier_class,
        END OF ty_step,
        tt_steps TYPE STANDARD TABLE OF ty_step WITH EMPTY KEY,
        BEGIN OF ty_log,
@@ -62,6 +62,8 @@ CLASS lcl_data_provider DEFINITION FINAL.
   PUBLIC SECTION.
     METHODS get_shipment IMPORTING io_scenario TYPE REF TO lcl_scenario
                          RETURNING VALUE(rs_context) TYPE ty_context.
+  PRIVATE SECTION.
+    CLASS-DATA sv_last_hazard TYPE abap_bool.
 ENDCLASS.
 
 INTERFACE lif_pricing_strategy.
@@ -80,8 +82,12 @@ CLASS lcl_pricing_factory DEFINITION FINAL.
 ENDCLASS.
 
 INTERFACE lif_modifier.
-  METHODS apply CHANGING cs_context TYPE ty_context
-                IMPORTING io_scenario TYPE REF TO lcl_scenario io_log TYPE REF TO lcl_log.
+  METHODS apply
+    IMPORTING
+      io_scenario TYPE REF TO lcl_scenario
+      io_log      TYPE REF TO lcl_log
+    CHANGING
+      cs_context  TYPE ty_context.
   METHODS name RETURNING VALUE(rv_name) TYPE char30.
 ENDINTERFACE.
 
@@ -130,7 +136,6 @@ ENDCLASS.
 CLASS lcl_data_provider IMPLEMENTATION.
   METHOD get_shipment.
     " Deliberately models a legacy FM with a process-global cache.
-    STATICS sv_last_hazard TYPE abap_bool.
     rs_context = VALUE #( shipment_id = '4712' transport_type = 'ROAD'
                           country_from = 'CN' country_to = 'DE'
                           weight_kg = '1200' volume_m3 = '8.5' distance_km = '1287'
