@@ -4,7 +4,7 @@ A compact, intentionally imperfect ABAP debugging benchmark for the VERTEX Smart
 
 ## Quick start
 
-1. Import this repository with abapGit into a development package and activate the DDIC objects.
+1. Import this repository with abapGit into package `Z_CALC_RIG` and activate the DDIC objects. The root package metadata is stored in `src/package.devc.xml`; choose `Z_CALC_RIG` as the target package when creating the repository in abapGit.
 2. Run `ZVERTEX_DEMO_SETUP` to generate a baseline or corrupted Customizing scenario.
 3. Run `ZVERTEX_DEBUG_LAB` with the same scenario and inspect the execution timeline.
 
