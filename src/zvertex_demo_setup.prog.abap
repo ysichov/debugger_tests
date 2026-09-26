@@ -61,7 +61,7 @@ START-OF-SELECTION.
                                         valid_from = '20260101' rate = '0.9200' ) ).
   MODIFY zlog_rule FROM @( VALUE #( scenario_id = lv_scenario rule_id = '100'
                                     priority = '010' field_name = 'WEIGHT'
-                                    action = 'SURCHARGE' parameter = '0.05' ) ).
+                                    action = 'SURCHARGE' action_value = '0.05' ) ).
 
   WRITE: / |Scenario { lv_scenario } generated.|,
          / |Pipeline rows: { lines( lt_pipeline ) }; tariffs, geo, fuel, exchange and rules are ready.|.
