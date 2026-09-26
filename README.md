@@ -24,4 +24,4 @@ The demo has real client-dependent `ZLOG_*` Customizing tables. The setup report
 
 `ZVERTEX_DEBUG_LAB` invokes a data provider, Strategy/Factory base-price calculation, and a dynamically-configured modifier pipeline. Each step appends a calculation log. The important investigation is not merely *where the final number changed*, but why it changed: base price → fuel → customs → hazard → discount → VAT.
 
-The code is structured as an importable proof-of-concept. The next iteration can replace `LCL_CONFIG_GENERATOR` with repository classes over `ZLOG_*` DDIC tables and add the remaining scenarios: validity overlap, geo fallback, currency date, unit conversion, rule priority and overwritten `sy-subrc`.
+The executable report is deliberately thin. The engine lives in global objects: `ZCL_CALC_FACADE`, `ZCL_CALC_CONFIG_REPO`, `ZCL_CALC_DATA_PROVIDER`, `ZCL_PRICING_FACTORY`, `ZCL_PRICE_ROAD` and the `ZCL_MOD_*` pipeline classes. Shared contracts are `ZIF_CALC_TYPES`, `ZIF_PRICING_STRATEGY` and `ZIF_CALC_MODIFIER`.

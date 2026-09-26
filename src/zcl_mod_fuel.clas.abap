@@ -4,7 +4,7 @@ CLASS zcl_mod_fuel IMPLEMENTATION.
     DATA(lv_percent) = CONV decfloat34( '0.08736' ).
     IF iv_scenario = 'PRECISION' OR iv_scenario = 'MULTI'. lv_percent = CONV decfloat34( '0.09' ). ENDIF.
     cs_context-fuel_amount = cs_context-amount * lv_percent. cs_context-amount = cs_context-amount + cs_context-fuel_amount.
-    io_log->add( iv_step = zif_calc_modifier~name( ) iv_amount = cs_context-amount iv_text = 'Fuel surcharge applied' ).
+    io_log->add( iv_step = me->zif_calc_modifier~name( ) iv_amount = cs_context-amount iv_text = 'Fuel surcharge applied' ).
   ENDMETHOD.
   METHOD zif_calc_modifier~name. rv_name = 'ZCL_MOD_FUEL'. ENDMETHOD.
 ENDCLASS.

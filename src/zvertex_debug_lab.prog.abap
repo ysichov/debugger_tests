@@ -12,4 +12,5 @@ START-OF-SELECTION.
                                     WHEN p_pipe = abap_true THEN 'PIPELINE'
                                     WHEN p_multi = abap_true THEN 'MULTI'
                                     ELSE 'CLEAN' ).
-  NEW zcl_calc_facade( )->run( iv_scenario = lv_scenario ).
+  DATA(ls_result) = NEW zcl_calc_facade( )->run( iv_scenario = lv_scenario ).
+  WRITE: / 'Returned result:', ls_result-amount, ls_result-currency.

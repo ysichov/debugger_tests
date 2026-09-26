@@ -1,5 +1,5 @@
 CLASS zcl_calc_facade DEFINITION PUBLIC FINAL CREATE PUBLIC.
-  PUBLIC SECTION. METHODS run IMPORTING iv_scenario TYPE char12.
+  PUBLIC SECTION. METHODS run IMPORTING iv_scenario TYPE char12 RETURNING VALUE(rs_result) TYPE zif_calc_types=>ty_context.
   PRIVATE SECTION. METHODS modifier_for IMPORTING iv_name TYPE char30 RETURNING VALUE(ro_modifier) TYPE REF TO zif_calc_modifier.
 ENDCLASS.
 CLASS zcl_calc_facade IMPLEMENTATION.
@@ -14,15 +14,18 @@ CLASS zcl_calc_facade IMPLEMENTATION.
   ENDMETHOD.
   METHOD run.
     DATA(lo_log) = NEW zcl_calc_log( ).
-    DATA(ls_context) = NEW zcl_calc_data_provider( )->get_shipment( iv_scenario ).
+    DATA(lo_data_provider) = NEW zcl_calc_data_provider( ).
+    DATA(ls_context) = lo_data_provider->get_shipment( iv_scenario ).
     DATA(lo_strategy) = zcl_pricing_factory=>create( ls_context-transport_type ).
     lo_strategy->calculate_base( CHANGING cs_context = ls_context ).
     lo_log->add( iv_step = 'BASE_PRICE' iv_amount = ls_context-amount iv_text = 'ROAD strategy result' ).
-    DATA(lt_steps) = NEW zcl_calc_config_repo( )->get_pipeline( iv_scenario ).
+    DATA(lo_config_repo) = NEW zcl_calc_config_repo( ).
+    DATA(lt_steps) = lo_config_repo->get_pipeline( iv_scenario ).
     LOOP AT lt_steps INTO DATA(ls_step).
       DATA(lo_modifier) = modifier_for( ls_step-name ).
       IF lo_modifier IS BOUND. lo_modifier->apply( EXPORTING iv_scenario = iv_scenario io_log = lo_log CHANGING cs_context = ls_context ). ENDIF.
     ENDLOOP.
+    rs_result = ls_context.
     WRITE: / 'Shipment', ls_context-shipment_id, 'final amount:', ls_context-amount, ls_context-currency.
     ULINE. lo_log->display( ).
   ENDMETHOD.
