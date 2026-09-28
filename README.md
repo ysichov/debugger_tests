@@ -8,7 +8,7 @@ A compact, intentionally imperfect ABAP debugging benchmark for the VERTEX Smart
 2. Run `ZVERTEX_DEMO_SETUP` to generate a baseline or corrupted Customizing scenario.
 3. Run `ZVERTEX_DEBUG_LAB` with the same scenario and inspect the execution timeline.
 
-The demo has real client-dependent `ZLOG_*` Customizing tables. The setup report is deterministic and can reset and recreate a scenario without manual SM30 maintenance.
+The demo has real client-dependent `ZLOG_*` Customizing tables. The setup report is deterministic and can reset and recreate a scenario without manual SM30 maintenance. Runtime values are read from those tables: shipment input, base tariff, fuel index, geo matrix, pipeline and business rules.
 
 ## Scenarios
 
@@ -16,7 +16,7 @@ The demo has real client-dependent `ZLOG_*` Customizing tables. The setup report
 | --- | --- | --- |
 | `CLEAN` | None | — |
 | `PRECISION` | Fuel rate is rounded before multiplication | `ZCL_MOD_FUEL` |
-| `STATE` | Legacy provider leaks `STATICS` hazard state | `ZCL_MOD_HAZARD` |
+| `STATE` | Shipment Customizing marks the cargo hazardous | `ZCL_MOD_HAZARD` |
 | `PIPELINE` | Customising executes VAT before discount | pipeline configuration |
 | `MULTI` | All three defects together | Depends on the dependency path |
 

@@ -21,6 +21,7 @@ PricingFacade
 | Table | Purpose | Debug failure mode |
 | --- | --- | --- |
 | `ZLOG_BASE_TARIFF` | Rate and validity interval | overlapping records |
+| `ZLOG_SHIPMENT` | Scenario shipment input and pricing date | missing scenario input |
 | `ZLOG_GEO_MATRIX` | route customs rate and fallback | missing wildcard fallback |
 | `ZLOG_PIPELINE` | modifier class order | tax before discount |
 | `ZLOG_FUEL_RATE` | fuel index by date | wrong rate or date |
