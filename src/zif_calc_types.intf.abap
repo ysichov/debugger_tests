@@ -1,6 +1,6 @@
 INTERFACE zif_calc_types PUBLIC.
   TYPES: BEGIN OF ty_context, shipment_id TYPE char10, transport_type TYPE char4, country_from TYPE land1, country_to TYPE land1,
-           weight_kg TYPE decfloat34, volume_m3 TYPE decfloat34, distance_km TYPE decfloat34, pricing_date TYPE dats, hazardous TYPE abap_bool,
+           weight_kg TYPE zlog_shipment-weight_kg, volume_m3 TYPE zlog_shipment-volume_m3, distance_km TYPE zlog_shipment-distance_km, pricing_date TYPE dats, hazardous TYPE abap_bool,
            delay_days TYPE i, amount TYPE decfloat34, currency TYPE waers, fuel_amount TYPE decfloat34, customs_amount TYPE decfloat34,
            discount_amount TYPE decfloat34, tax_amount TYPE decfloat34, END OF ty_context,
          BEGIN OF ty_step, step_no TYPE zlog_pipeline-step_no, name TYPE zlog_pipeline-modifier_class, END OF ty_step,
