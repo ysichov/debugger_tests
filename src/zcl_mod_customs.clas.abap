@@ -1,4 +1,7 @@
-CLASS zcl_mod_customs DEFINITION PUBLIC FINAL CREATE PUBLIC. PUBLIC SECTION. INTERFACES zif_calc_modifier. ENDCLASS.
+CLASS zcl_mod_customs DEFINITION PUBLIC FINAL CREATE PUBLIC.
+  PUBLIC SECTION.
+    INTERFACES zif_calc_modifier.
+ENDCLASS.
 CLASS zcl_mod_customs IMPLEMENTATION.
   METHOD zif_calc_modifier~apply.
     SELECT tax_rate, requires_clearance
@@ -14,5 +17,7 @@ CLASS zcl_mod_customs IMPLEMENTATION.
     ENDIF.
     io_log->add( iv_step = me->zif_calc_modifier~name( ) iv_amount = cs_context-amount iv_text = 'Customs duty from geo matrix' ).
   ENDMETHOD.
-  METHOD zif_calc_modifier~name. rv_name = 'ZCL_MOD_CUSTOMS'. ENDMETHOD.
+  METHOD zif_calc_modifier~name.
+    rv_name = 'ZCL_MOD_CUSTOMS'.
+  ENDMETHOD.
 ENDCLASS.

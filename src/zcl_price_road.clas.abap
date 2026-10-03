@@ -1,4 +1,7 @@
-CLASS zcl_price_road DEFINITION PUBLIC FINAL CREATE PUBLIC. PUBLIC SECTION. INTERFACES zif_pricing_strategy. ENDCLASS.
+CLASS zcl_price_road DEFINITION PUBLIC FINAL CREATE PUBLIC.
+  PUBLIC SECTION.
+    INTERFACES zif_pricing_strategy.
+ENDCLASS.
 CLASS zcl_price_road IMPLEMENTATION.
   METHOD zif_pricing_strategy~calculate_base.
     SELECT price_per_unit, currency

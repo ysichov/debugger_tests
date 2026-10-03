@@ -34,7 +34,7 @@ START-OF-SELECTION.
                            ( scenario_id = lv_scenario step_no = '040' modifier_class = 'ZCL_MOD_TAX' )
                            ( scenario_id = lv_scenario step_no = '050' modifier_class = 'ZCL_MOD_DISCOUNT' ) ).
   ENDIF.
-  INSERT zlog_pipeline FROM TABLE @lt_pipeline.
+  MODIFY zlog_pipeline FROM TABLE @lt_pipeline.
 
   MODIFY zlog_shipment FROM @( VALUE #( scenario_id = lv_scenario shipment_id = '4712'
     transport_type = 'ROAD' country_from = 'CN' country_to = 'DE' weight_kg = '1200'

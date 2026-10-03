@@ -1,5 +1,8 @@
 CLASS zcl_calc_data_provider DEFINITION PUBLIC FINAL CREATE PUBLIC.
-  PUBLIC SECTION. METHODS get_shipment IMPORTING iv_scenario TYPE char12 RETURNING VALUE(rs_context) TYPE zif_calc_types=>ty_context.
+  PUBLIC SECTION.
+    METHODS get_shipment
+      IMPORTING iv_scenario TYPE char12
+      RETURNING VALUE(rs_context) TYPE zif_calc_types=>ty_context.
 ENDCLASS.
 CLASS zcl_calc_data_provider IMPLEMENTATION.
   METHOD get_shipment.

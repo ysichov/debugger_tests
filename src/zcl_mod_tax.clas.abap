@@ -1,4 +1,7 @@
-CLASS zcl_mod_tax DEFINITION PUBLIC FINAL CREATE PUBLIC. PUBLIC SECTION. INTERFACES zif_calc_modifier. ENDCLASS.
+CLASS zcl_mod_tax DEFINITION PUBLIC FINAL CREATE PUBLIC.
+  PUBLIC SECTION.
+    INTERFACES zif_calc_modifier.
+ENDCLASS.
 CLASS zcl_mod_tax IMPLEMENTATION.
   METHOD zif_calc_modifier~apply.
     SELECT action_value FROM zlog_rule
@@ -11,5 +14,7 @@ CLASS zcl_mod_tax IMPLEMENTATION.
     ENDIF.
     io_log->add( iv_step = me->zif_calc_modifier~name( ) iv_amount = cs_context-amount iv_text = 'VAT applied' ).
   ENDMETHOD.
-  METHOD zif_calc_modifier~name. rv_name = 'ZCL_MOD_TAX'. ENDMETHOD.
+  METHOD zif_calc_modifier~name.
+    rv_name = 'ZCL_MOD_TAX'.
+  ENDMETHOD.
 ENDCLASS.
