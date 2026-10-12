@@ -3,8 +3,16 @@ CLASS zcl_calc_data_provider DEFINITION PUBLIC FINAL CREATE PUBLIC.
     METHODS get_shipment
       IMPORTING iv_scenario TYPE char12
       RETURNING VALUE(rs_context) TYPE zif_calc_types=>ty_context.
+protected section.
+    PRIVATE SECTION.
+     CLASS-DATA mv_last_hazard TYPE abap_bool.
 ENDCLASS.
-CLASS zcl_calc_data_provider IMPLEMENTATION.
+
+
+
+CLASS ZCL_CALC_DATA_PROVIDER IMPLEMENTATION.
+
+
   METHOD get_shipment.
     SELECT SINGLE shipment_id, transport_type, country_from, country_to, weight_kg, volume_m3,
                   distance_km, pricing_date, hazardous, delay_days, currency
