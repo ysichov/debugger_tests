@@ -7,6 +7,7 @@ PARAMETERS p_pipe  RADIOBUTTON GROUP sc.
 PARAMETERS p_multi RADIOBUTTON GROUP sc.
 
 START-OF-SELECTION.
+
   DATA(lv_scenario) = COND char12( WHEN p_prec = abap_true THEN 'PRECISION'
                                     WHEN p_state = abap_true THEN 'STATE'
                                     WHEN p_pipe = abap_true THEN 'PIPELINE'

@@ -17,4 +17,8 @@ a = a + b.
 
 add 1 to a.
 
+do 25 times.
+  add sy-index to b.
+enddo.
+
 subtract 1 from b.

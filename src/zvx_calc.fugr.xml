@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <AREAT>VERTEX debugger tests: function modules</AREAT>
+   <INCLUDES>
+    <SOBJ_NAME>LZVX_CALCTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZVX_CALC</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>Z_VX_CALC_FREIGHT</FUNCNAME>
+     <SHORT_TEXT>VERTEX test: freight of a shipment context</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_TRANSPORT</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>CHAR4</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IS_CONTEXT</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZIF_CALC_TYPES=&gt;TY_CONTEXT</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IT_STEPS</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZIF_CALC_TYPES=&gt;TT_STEPS</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_RATE</PARAMETER>
+       <DEFAULT>2</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <REFERENCE>X</REFERENCE>
+       <TYP>I</TYP>
+      </RSIMP>
+     </IMPORT>
+     <CHANGING>
+      <RSCHA>
+       <PARAMETER>CV_NOTE</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>STRING</TYP>
+      </RSCHA>
+     </CHANGING>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>EV_AMOUNT</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>DECFLOAT34</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>ET_LOG</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZIF_CALC_TYPES=&gt;TT_LOG</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_TRANSPORT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Transport type: ROAD, AIR, SEA</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IS_CONTEXT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Shipment context</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IT_STEPS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Steps, each adds a log row</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_RATE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Rate per tonne-kilometre</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>CV_NOTE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Note, the result is appended</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_AMOUNT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Freight amount</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_LOG</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>One row per step</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

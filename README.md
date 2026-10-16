@@ -25,3 +25,7 @@ The demo has real client-dependent `ZLOG_*` Customizing tables. The setup report
 `ZVERTEX_DEBUG_LAB` invokes a data provider, Strategy/Factory base-price calculation, and a dynamically-configured modifier pipeline. Each step appends a calculation log. The important investigation is not merely *where the final number changed*, but why it changed: base price → fuel → customs → hazard → discount → VAT.
 
 The executable report is deliberately thin. The engine lives in global objects: `ZCL_CALC_FACADE`, `ZCL_CALC_CONFIG_REPO`, `ZCL_CALC_DATA_PROVIDER`, `ZCL_PRICING_FACTORY`, `ZCL_PRICE_ROAD` and the `ZCL_MOD_*` pipeline classes. Shared contracts are `ZIF_CALC_TYPES`, `ZIF_PRICING_STRATEGY` and `ZIF_CALC_MODIFIER`.
+
+## Function module
+
+Function group `ZVX_CALC` holds `Z_VX_CALC_FREIGHT`, a test of running a function module on its own: every kind of parameter at once - a simple value (`IV_TRANSPORT`), a structure (`IS_CONTEXT`, `ZIF_CALC_TYPES=>TY_CONTEXT`), a table (`IT_STEPS`), an optional value with a DEFAULT (`IV_RATE`, 2), CHANGING (`CV_NOTE`) and a table as a result (`ET_LOG`). The freight is weight × distance × rate / 1000, tripled for `AIR`, plus one per step; each step adds a log row. With weight 1200, distance 500, `AIR` and two steps it is 3602.
