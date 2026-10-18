@@ -6,10 +6,9 @@ CLASS zcl_calc_config_repo DEFINITION PUBLIC FINAL CREATE PUBLIC.
 ENDCLASS.
 CLASS zcl_calc_config_repo IMPLEMENTATION.
   METHOD get_pipeline.
-    DATA(lv_config_scenario) = COND char12( WHEN iv_scenario = 'PIPELINE' OR iv_scenario = 'MULTI' THEN iv_scenario ELSE 'CLEAN' ).
     SELECT step_no, modifier_class AS name
       FROM zlog_pipeline
-      WHERE scenario_id = @lv_config_scenario
+      WHERE scenario_id = @iv_scenario
       ORDER BY step_no
       INTO CORRESPONDING FIELDS OF TABLE @rt_steps.
   ENDMETHOD.

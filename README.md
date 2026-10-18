@@ -5,7 +5,7 @@ A compact, intentionally imperfect ABAP debugging benchmark for the VERTEX Smart
 ## Quick start
 
 1. Import this repository with abapGit into package `Z_CALC_RIG` and activate the DDIC objects. The root package metadata is stored in `src/package.devc.xml`; choose `Z_CALC_RIG` as the target package when creating the repository in abapGit.
-2. Run `ZVERTEX_DEMO_SETUP` to generate a baseline or corrupted Customizing scenario.
+2. Run `ZVERTEX_DEMO_SETUP`, choose one of the five labelled scenarios and leave **Reset selected scenario** checked to recreate its Customizing. Prepare each scenario before running it. The generator also restores the shared tariff, route, fuel and exchange data, so prepare and run a scenario before preparing the next one.
 3. Run `ZVERTEX_DEBUG_LAB` with the same scenario and inspect the execution timeline.
 
 The demo has real client-dependent `ZLOG_*` Customizing tables. The setup report is deterministic and can reset and recreate a scenario without manual SM30 maintenance. Runtime values are read from those tables: shipment input, base tariff, fuel index, geo matrix, pipeline and business rules.
@@ -19,6 +19,10 @@ The demo has real client-dependent `ZLOG_*` Customizing tables. The setup report
 | `STATE` | Shipment Customizing marks the cargo hazardous | `ZCL_MOD_HAZARD` |
 | `PIPELINE` | Customising executes VAT before discount | pipeline configuration |
 | `MULTI` | All three defects together | Depends on the dependency path |
+
+The setup and execution reports offer the same five scenarios. Each scenario has its own shipment, pipeline and rules. Customizing fields have English Dictionary descriptions and field labels.
+
+Discount applies to the amount excluding any VAT already recorded in `TAX_AMOUNT`. In `CLEAN`, the discount reduces the VAT base. In `PIPELINE`, VAT runs first and remains overstated after the discount. This makes the final amount differ as well as the intermediate tax and discount amounts. For the generated data, the calculated reference totals are approximately **11,302.00 EUR** for `CLEAN` and **11,437.83 EUR** for `PIPELINE`, a difference of **135.82 EUR**. These are arithmetic reference values, not a recorded SAP run.
 
 ## Debugging story
 

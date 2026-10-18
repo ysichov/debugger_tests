@@ -9,7 +9,7 @@ CLASS zcl_mod_discount IMPLEMENTATION.
       ORDER BY priority INTO @DATA(lv_percent) UP TO 1 ROWS.
     ENDSELECT.
     IF sy-subrc = 0.
-      cs_context-discount_amount = cs_context-amount * CONV decfloat34( lv_percent ).
+      cs_context-discount_amount = ( cs_context-amount - cs_context-tax_amount ) * CONV decfloat34( lv_percent ).
       cs_context-amount = cs_context-amount - cs_context-discount_amount.
     ENDIF.
     io_log->add( iv_step = me->zif_calc_modifier~name( ) iv_amount = cs_context-amount iv_text = 'GOLD volume discount' ).

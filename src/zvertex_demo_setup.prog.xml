@@ -12,7 +12,44 @@
    <TPOOL>
     <item>
      <ID>R</ID>
+     <ENTRY>VERTEX Debug Lab - Prepare Scenarios</ENTRY>
      <LENGTH>36</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_CLEAN</KEY>
+     <ENTRY>CLEAN - baseline calculation</ENTRY>
+     <LENGTH>28</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_PREC</KEY>
+     <ENTRY>PRECISION - rounded fuel rate</ENTRY>
+     <LENGTH>29</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_STATE</KEY>
+     <ENTRY>STATE - hazardous cargo flag</ENTRY>
+     <LENGTH>28</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_PIPE</KEY>
+     <ENTRY>PIPELINE - VAT before discount</ENTRY>
+     <LENGTH>30</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_MULTI</KEY>
+     <ENTRY>MULTI - combined defects</ENTRY>
+     <LENGTH>24</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_RESET</KEY>
+     <ENTRY>Reset selected scenario</ENTRY>
+     <LENGTH>23</LENGTH>
     </item>
    </TPOOL>
   </asx:values>
