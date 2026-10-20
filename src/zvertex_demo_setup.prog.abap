@@ -23,7 +23,6 @@ START-OF-SELECTION.
     DELETE FROM zlog_shipment WHERE scenario_id = @lv_scenario.
   ENDIF.
 
-  " Correct sequence: discount must reduce the VAT base.
   DATA lt_pipeline TYPE STANDARD TABLE OF zlog_pipeline WITH EMPTY KEY.
   lt_pipeline = VALUE #( ( scenario_id = lv_scenario step_no = '010' modifier_class = 'ZCL_MOD_FUEL' )
                          ( scenario_id = lv_scenario step_no = '020' modifier_class = 'ZCL_MOD_CUSTOMS' )
@@ -31,7 +30,6 @@ START-OF-SELECTION.
                          ( scenario_id = lv_scenario step_no = '040' modifier_class = 'ZCL_MOD_DISCOUNT' )
                          ( scenario_id = lv_scenario step_no = '050' modifier_class = 'ZCL_MOD_TAX' ) ).
   IF lv_scenario = 'PIPELINE' OR lv_scenario = 'MULTI'.
-    " Intentional config defect: code remains correct, only table data is corrupt.
     lt_pipeline = VALUE #( ( scenario_id = lv_scenario step_no = '010' modifier_class = 'ZCL_MOD_FUEL' )
                            ( scenario_id = lv_scenario step_no = '020' modifier_class = 'ZCL_MOD_CUSTOMS' )
                            ( scenario_id = lv_scenario step_no = '030' modifier_class = 'ZCL_MOD_HAZARD' )
@@ -46,7 +44,6 @@ START-OF-SELECTION.
     hazardous = COND #( WHEN lv_scenario = 'STATE' OR lv_scenario = 'MULTI' THEN abap_true ELSE abap_false )
     delay_days = 4 currency = 'EUR' ) ).
 
-  " Baseline data; MULTI deliberately adds a second active ROAD tariff (overlap).
   DELETE FROM zlog_base_tariff WHERE transport_type = 'ROAD' AND country_from = 'CN' AND country_to = 'DE'.
   INSERT zlog_base_tariff FROM @( VALUE #( transport_type = 'ROAD' country_from = 'CN' country_to = 'DE'
                                            valid_from = '20260101' valid_to = '20260531' price_per_unit = '5.00' currency = 'EUR' ) ).
