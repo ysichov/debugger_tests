@@ -33,3 +33,7 @@ The executable report is deliberately thin. The engine lives in global objects: 
 ## Function module
 
 Function group `ZVX_CALC` holds `Z_VX_CALC_FREIGHT`, a test of running a function module on its own: every kind of parameter at once - a simple value (`IV_TRANSPORT`), a structure (`IS_CONTEXT`, `ZIF_CALC_TYPES=>TY_CONTEXT`), a table (`IT_STEPS`), an optional value with a DEFAULT (`IV_RATE`, 2), CHANGING (`CV_NOTE`) and a table as a result (`ET_LOG`). The freight is weight × distance × rate / 1000, tripled for `AIR`, plus one per step; each step adds a log row. With weight 1200, distance 500, `AIR` and two steps it is 3602.
+
+## Calls diagram
+
+`Z_CALLS_TEST` checks what VERTEX's Calls diagram takes for a call. Its `START-OF-SELECTION` has offset/length access (`gv_text(4)`, `gv_text+2(3)`, `gv_name(10)`), inline declarations (`FIELD-SYMBOL(<lv_line>)`, `DATA(lv_count)`) and a built-in function (`lines( )`) - none of them is a call. The calls are `PERFORM local_form`, the external forms of the subroutine pool `Z_CALLS_TEST_FORMS` in both notations (`PERFORM short_form(z_calls_test_forms)` and `PERFORM long_form IN PROGRAM z_calls_test_forms`), the function module `CONVERT_DATE_TO_INTERNAL` and `LCL_HELPER->RUN`. With Methods and depth 2 the diagram shows exactly these five, both external forms resolved in `Z_CALLS_TEST_FORMS`.
