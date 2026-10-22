@@ -37,3 +37,7 @@ Function group `ZVX_CALC` holds `Z_VX_CALC_FREIGHT`, a test of running a functio
 ## Calls diagram
 
 `Z_CALLS_TEST` checks what VERTEX's Calls diagram takes for a call. Its `START-OF-SELECTION` has offset/length access (`gv_text(4)`, `gv_text+2(3)`, `gv_name(10)`), inline declarations (`FIELD-SYMBOL(<lv_line>)`, `DATA(lv_count)`) and a built-in function (`lines( )`) - none of them is a call. The calls are `PERFORM local_form`, the external forms of the subroutine pool `Z_CALLS_TEST_FORMS` in both notations (`PERFORM short_form(z_calls_test_forms)` and `PERFORM long_form IN PROGRAM z_calls_test_forms`), the function module `CONVERT_DATE_TO_INTERNAL` and `LCL_HELPER->RUN`. With Methods and depth 2 the diagram shows exactly these five, both external forms resolved in `Z_CALLS_TEST_FORMS`.
+
+## Includes
+
+`Z_INCL_TEST` keeps its local class `LCL_APP` apart: the DEFINITION in `Z_INCL_TEST_TOP`, the IMPLEMENTATION in `Z_INCL_TEST_C01`, a form in `Z_INCL_TEST_F01`. Object Navigator opens each method of `LCL_APP` in `Z_INCL_TEST_C01`; a breakpoint set in an include's editor is placed in SAP at that include and stops the run there. The run writes 6, the sum of the even numbers 1..5.
