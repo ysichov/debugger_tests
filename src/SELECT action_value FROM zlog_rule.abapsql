@@ -1,0 +1,3 @@
+SELECT action_value FROM zlog_rule
+      WHERE scenario_id = @iv_scenario AND field_name = 'VOLUME' AND action = 'DISCOUNT'
+      ORDER BY priority INTO @DATA(lv_percent) UP TO 1 ROWS.

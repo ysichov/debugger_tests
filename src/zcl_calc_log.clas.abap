@@ -14,7 +14,7 @@ CLASS zcl_calc_log IMPLEMENTATION.
   ENDMETHOD.
   METHOD display.
     LOOP AT mt_log INTO DATA(ls_log).
-      WRITE: / ls_log-step, 35 ls_log-amount, 60 ls_log-text.
+      WRITE: / |{ ls_log-step }  { ls_log-amount }  { ls_log-text }|.
     ENDLOOP.
   ENDMETHOD.
 ENDCLASS.
