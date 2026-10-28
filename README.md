@@ -2,6 +2,9 @@
 
 A compact, intentionally imperfect ABAP debugging benchmark for the VERTEX Smart Debugger. It models a cross-border logistics settlement and produces a traceable value history rather than a CRUD workflow.
 
+See the [VERTEX product demo plan](docs/presentation-plan.md) for the presentation sequence,
+assistant prompts, saved-session walkthrough, and scenario preparation notes.
+
 ## Quick start
 
 1. Import this repository with abapGit into package `Z_CALC_RIG` and activate the DDIC objects. The root package metadata is stored in `src/package.devc.xml`; choose `Z_CALC_RIG` as the target package when creating the repository in abapGit.
