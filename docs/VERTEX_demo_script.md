@@ -43,7 +43,7 @@ Intro per slide (10–20 s), then the clip narration. Times are positions inside
 
 **Intro:** Next, an alternative to classic debugging. We take a small test program, run its scenarios, and find out what goes wrong — with VERTEX views and the AI, without stepping through the debugger line by line.
 
-*Clip: 02_debugging.mp4 — 14:39.*
+*Clip: 02_debugging_v4.mp4 — 15:29.*
 
 ### Introduction to the test program
 | Time | Topic | Text |
@@ -72,47 +72,45 @@ Intro per slide (10–20 s), then the clip narration. Times are positions inside
 | 5:03–5:18 | Navigate from the diagram | Click a method, and its code opens next to the map: here the customs modifier, then the log. |
 | 5:18–5:30 | A map before running | So this view can help us understand the program better. |
 
-### Variables, FLOW, Formula and Expression
+### Code Flow Analysis before running
 | Time | Topic | Text |
 |---|---|---|
-| 5:30–5:42 | Open the debugger | Now a different question: where does the final amount come from? We open VERTEX Smart Debugger. |
-| 5:42–5:58 | Variables before execution | Even before the program runs, Variables shows the declared fields and their types. Runtime values appear only when execution stops. |
-| 5:58–6:13 | Choose the value | We select LS_RESULT-AMOUNT and ask VERTEX where it can change. Breakpoints mark the start of the calculation and the point where the result is returned. |
-| 6:13–6:40 | 37 places | VERTEX follows the value through method calls and finds 37 places in the code that can change it, without running the program. |
-| 6:40–6:54 | Classes | FLOW shows these places at several levels. Classes gives the broad structure. |
-| 6:54–7:16 | Methods | Methods shows the calls between them. Click an item, and its code opens next to the tree. |
-| 7:16–7:30 | Logic | Logic adds the branches and conditions. |
-| 7:30–7:43 | Statements | And Statements shows every operation in detail. |
-| 7:43–8:09 | From tree to diagram | The same flow is also a diagram, with the same levels and a choice of direction. |
-| 8:09–8:33 | Logic, Fit and the lens | At the Logic level the picture is much larger. Fit gives an overview, and the lens lets us inspect a small area without losing our place. |
-| 8:33–8:47 | Follow the formula | We haven't run anything yet, but Formula already shows what can contribute to the amount: base price, fuel, customs, hazard, discount and tax, each with its inputs. |
-| 8:47–9:19 | The expression and its inputs | Expression writes the whole calculation out in one line, built from the source only. Below, each input with the SELECT it comes from: weight, distance, tariff, fuel index, tax rate. Which branches really run and with what values, we'll see after a run in SAP. |
-
-### BSE and green highlighting
-| Time | Topic | Text |
-|---|---|---|
-| 9:19–9:41 | Focus on the selected value | BSE, Backward Symbolic Execution, goes back from our amount to the code that really affects it. Green marks that code; the BSE view keeps only this slice. |
+| 5:30–5:46 | Open the debugger | Now a different question: where does the final amount come from? We open VERTEX Smart Debugger. |
+| 5:46–6:02 | Choose the value | Even before the program runs, Variables shows the declared fields. We follow LS_RESULT-AMOUNT; breakpoints mark the start and the end of the calculation. |
+| 6:02–6:58 | Code Flow Analysis | Code Flow Analysis follows the value through the code without running it: classes, then methods, then every statement. Click an item, and its code opens next to the tree. The classic debugger shows only the line you are on; here, before you even press Run, you see every place in the code that can change the value. No more stepping through fifty methods to find the few that matter. |
+| 6:58–7:14 | Diagram and BSE | The same flow as a diagram. BSE, Backward Symbolic Execution, keeps only the code that really affects our amount. |
+| 7:14–7:50 | Derivation | Derivation looks at the amount from the data side: all the pieces of the puzzle — which fields and tables it comes from, and through which assignments. Click a branch, and its source opens on the left. |
+| 7:50–8:14 | Formula | Formula writes the whole calculation out, and below, where each input comes from. All of this is from the source only — which branches really run, we'll see after a run in SAP. |
 
 ### SAP recording
 | Time | Topic | Text |
 |---|---|---|
-| 9:41–10:06 | Move from source analysis to execution | So far we've seen how the program can calculate the amount. Now let's see what really happens. We go back to the entry program and run it in SAP from the debugger. |
-| 10:06–10:31 | Record steps and values | On the selection screen we choose PIPELINE, "VAT before discount", and execute. The debugger stops at the first breakpoint. We switch on Steps & values and continue: now every step is recorded with its values. |
-| 10:31–11:51 | Follow the recording across methods | The program runs, and the editor follows it: the facade, the pricing class, the log and each modifier — the same classes we saw in the Calls diagram. This time it is the real path of this run. The step counter grows; every step is saved with its values. At the second breakpoint the run stops: one hundred seventy-four steps recorded. |
-| 11:51–12:15 | Replay the captured steps | With the player we go back through the recording. Each step shows its source line, stack and values. SAP stays where it stopped, so we don't need to run again. |
+| 8:14–8:30 | Run in SAP | We run the program in SAP with the baseline scenario, CLEAN. It stops at the first breakpoint; we switch on Steps & values and continue. |
+| 8:30–9:12 | Follow the recording | The run is being recorded step by step, with its values. As you can see, it is not fast: debugging SAP over the web from VS Code is quite slow. In Eclipse the same recording is noticeably faster. And the fastest option is the ABAP transpiler, which runs the code locally — I'll show it a bit later. |
 
-### Formula and Expression after the recorded run
+### Formula with recorded values
 | Time | Topic | Text |
 |---|---|---|
-| 12:15–12:30 | Return to the value with runtime data | Back to LS_RESULT-AMOUNT. Now Variables has real values: the PIPELINE scenario and the modifiers in the order they ran. |
-| 12:30–12:53 | Read the expression with recorded values | And now Expression has numbers: every input has its recorded value, and the whole formula gives eleven thousand four hundred thirty-eight. Below, the statements in the order they ran, each with its value and step. |
+| 9:12–9:40 | Formula with values | Now every input of the formula has its value from this run. Optimized shows only what can define the amount. |
+| 9:40–10:00 | Something odd | Recorded shows the path this run really took: the result is eleven thousand three hundred and two, as expected for CLEAN. But one value is red: the discount uses the tax amount, zero, before the tax step has set it. |
 
 ### AI-assisted diagnosis
 | Time | Topic | Text |
 |---|---|---|
-| 12:53–13:34 | Ask AI to investigate the history | Now let's ask the AI. In the VERTEX chat I write: analyse the debug history and find a bug. I switch to Claude and send. The assistant gets the recording itself — the steps and their values — not just the source code. |
-| 13:34–13:59 | Read the diagnosis | And here is the answer: VAT is calculated before the discount. The discount lowers the amount, but the tax stays as it was. So the steps run in the wrong order. |
-| 13:59–14:39 | Check the evidence behind the answer | Every claim has a link to a recorded step. One click, and the player jumps there: the fuel surcharge, the customs adjustment, the modifier pipeline — with the source line and the values. So we can check the AI instead of just trusting it. It also says what the bug costs: about one hundred thirty-six euros too much, and suggests a fix. |
+| 10:00–10:24 | Ask the AI | Let's ask the AI: please find a bug using the debug history. It gets the recording itself — steps and values — not just the source. |
+| 10:24–10:54 | The diagnosis | The answer: this run calculated the amount correctly, but the history shows one real defect. The discount step reads the tax amount before the tax step has set it. The AI checked every red value in the formula: the others are false alarms, this one is the bug. |
+| 10:54–11:20 | Check the evidence | Every claim links to a recorded step. One click, and the player jumps there: the discount class, step 113, with the tax amount still zero. |
+| 11:20–11:56 | Check the other scenarios | Now the other four scenarios. Recording each one in SAP would take a while, so I ask the AI to run them in the transpiler and briefly describe the bugs. |
+| 11:56–12:50 | The transpiler at work | Here is the transpiler I promised. The AI runs all four scenarios locally, with no SAP round trips, and then reads their recorded histories. Four runs take less time than one recording in SAP. |
+| 12:50–13:18 | Four scenarios, four stories | PRECISION and STATE return zero: the shipment is not found, and nobody checks it. PIPELINE charges VAT before the discount — about one hundred thirty-six euros too much. MULTI has two bugs together, about a thousand euros too much. |
+| 13:18–14:10 | Check the evidence | Each finding links to a step of its run. One click, and the replay opens there: the pricing class, the discount, the fuel rate, the tax step — with the values. So we can check the AI instead of just trusting it. |
+| 14:10–14:26 | Fixes | And at the end, a short list of fixes: check sy-subrc, round money and not rates, and calculate VAT from the discounted amount. |
+
+### Logs
+| Time | Topic | Text |
+|---|---|---|
+| 14:26–14:56 | Debug recordings | Everything is logged. Every debug run is saved — open it later, look at it yourself or ask the assistant. |
+| 14:56–15:29 | Assistant logs | And so is the assistant: every conversation, what it got and which tools it called. |
 
 **Wrap-up (after the clip):** So we found the cause from the calls, the formula and the recorded run, without stepping through the debugger once.
 
