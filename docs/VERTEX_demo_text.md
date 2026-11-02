@@ -2,13 +2,13 @@
 
 ## Slide 21. VERTEX: AI-Powered ABAP Plugins for VS Code & Eclipse
 
-Hi, I'm Yurii Sychov, ABAP developer, and I love building tools for ABAP. For about seven years I built them as open-source tools for SAP GUI: a data explorer, a code explorer, a version explorer, Smart Debugger and an AI assistant. Now all of them are collected in one place — VERTEX Tools.
+Hi, I'm Yurii Sychov, ABAP developer, and I love building tools for ABAP. For about seven years I built them as open-source tools for SAP GUI: code and data explorers, Smart Debugger and an AI assistant. Now all of them are collected in one place — VERTEX Tools.
 
 Let me introduce most of them in a short guided demo with video. Here is what we'll see.
 
 ## Slide 22. Overview
 
-First I'll show how to install VERTEX and connect it to SAP and to an LLM. Then a few use cases: an alternative to classic debugging, code insight on a big real class, and a transport review with AI.
+First I'll show how to install VERTEX and connect it to SAP and to an AI provider. Then a few use cases: an alternative to classic debugging, code insight on a big real class, and a transport review with AI.
 
 ## Slide 23. Install and set up VERTEX
 
@@ -20,29 +20,29 @@ The Claude Code and Codex extensions are optional: VERTEX can also use their own
 
 In Extensions, I search for SAP ABAP VERTEX and install it.
 
-After installation, VERTEX appears in the activity bar. I open VERTEX SAP Tools to make the initial configuration.
+After installation, VERTEX appears in the activity bar. I open VERTEX panel to complete the initial configuration.
 
-With the SAP Systems icon, I import the systems already configured in SAP Logon or Eclipse. I choose No Eclipse workspace, so VERTEX finds the systems automatically. I select E19 and enter the client and user.
+With the SAP icon, I import the systems already configured in SAP Logon or Eclipse. I choose No Eclipse workspace, so VERTEX finds the systems automatically. I select E19 and enter the client and user.
 
 E19 is added with its client and user. It uses a password, so SNC stays off.
 
 I save the password, so VERTEX can use it from now on. It checks the connection, and we see that it is working.
 
-In LLM Providers, I choose the assistants to use. Claude Code and Codex can run through their VS Code extension or their own command-line tool. I pick the route available on this machine, select the models, and save.
+In AI Providers, I choose the assistants to use. Claude Code and Codex can run through their VS Code extension or their own command-line tool. I pick the route available on this machine, select the models, and save.
 
 The active provider and model can be switched in the VERTEX panel at any time.
 
-VERTEX is installed, connected to SAP and to an AI model. Now let's use it on a real problem.
+VERTEX is installed, connected to SAP and to an AI models. Now let's use it on a real problem.
 
 ## Slide 24. An alternative to classic debugging
 
-Next, an alternative to classic debugging. We take a small test program, run its scenarios, and find out what goes wrong — with VERTEX views and the AI, without stepping through the debugger line by line.
+Next, an alternative to classic debugging. We take a small test program, run its scenarios, and use VERTEX views and AI to understand the problem — without stepping through the debugger line by line.
 
 ### Introduction to the test program
 
 There are two ways to find SAP objects. The VERTEX Tools button opens an object search: choose the object type, such as a class, program or package, and enter a name or a mask. Here we look for the Z_DEBUGGER_TEST package.
 
-Or type a name, or part of one, in the VERTEX chat. It searches the system directly, without tokens, and opens what it finds.
+Or type a name, or part of one, in the VERTEX chat. It searches inside the system, without tokens, and opens what it finds.
 
 Let’s look inside the package: we have twelve classes and other objects. We’ll test this program, ZVERTEX_DEBUG_LAB, so I open it.
 
@@ -50,7 +50,7 @@ Here is ZVERTEX_DEBUG_LAB. Its code is short: it offers five test scenarios, pas
 
 What happens inside, we don’t know yet. So we open VERTEX Smart Debugger from the context menu and run the program in SAP. The selection screen lists the five scenarios.
 
-We start with CLEAN, the baseline: about eleven thousand three hundred euros.
+We start with the first scenario - CLEAN: We got about eleven thousand three hundred euros.
 
 PRECISION returns zero.
 
@@ -72,7 +72,7 @@ Another feature is the Calls diagram: a map of the program’s calls, built from
 
 Depth sets how many levels of calls we see. At depth two, the program’s start event calls RUN in the calculation facade.
 
-At depth three, RUN calls a data provider, a pricing factory, a configuration repository, a log and a modifier interface. We also switch the layout from top-down to left-right.
+At depth three, RUN calls a data provider, a pricing factory, a configuration repository, a log and a modifier interface. We also can switch the layout. 
 
 At depth four, behind the modifier interface we find five modifiers: fuel, customs, hazard, discount and tax. The map shows what the code can call; what actually runs, we’ll see later in the debugger.
 
@@ -82,11 +82,15 @@ So this view can help us understand the program better.
 
 ### Code Flow Analysis before running
 
-Now a different question: where does the final amount come from? We open VERTEX Smart Debugger.
+Now a different question: where does the final amount come from? Lets open VERTEX Smart Debugger again.
 
-Even before the program runs, Variables shows the declared fields. We follow LS_RESULT-AMOUNT; breakpoints mark the start and the end of the calculation.
+Before the program runs, lets mark a variable LS_RESULT-AMOUNT to automatically analyze everything involved in its calculation. Breakpoints mark the start and the end of the calculation.
 
-Code Flow Analysis follows the value through the code without running it: classes, then methods, then every statement. Click an item, and its code opens next to the tree. The classic debugger shows only the line you are on; here, before you even press Run, you see every place in the code that can change the value. No more stepping through fifty methods to find the few that matter.
+Code Flow Analysis shows how the value changes in the code without running the program. We see classes, methods, and statements. Click any item to see its code next to the tree.
+
+In the classic debugger, we see one line at a time. Here, we can see all places that may change the value, even before running the program.
+
+No need to go through fifty methods to find the important ones.
 
 The same flow as a diagram. BSE, Backward Symbolic Execution, keeps only the code that really affects our amount.
 
