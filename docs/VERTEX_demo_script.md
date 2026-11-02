@@ -1,8 +1,8 @@
 # VERTEX demo — speaker script
 
-Intro per slide (10–20 s), then the clip narration. Times are positions inside compiled_1080_final.mp4.
+Slide numbers follow the Session 1 deck (v3). For each slide: intro, then the clip with times from the start of that clip, then a wrap-up.
 
-## Slide 1. VERTEX: AI-Powered ABAP Plugins for VS Code & Eclipse
+## Slide 21. VERTEX: AI-Powered ABAP Plugins for VS Code & Eclipse
 
 **Intro:** Hi, I'm Yurii Sychov, Lead Software Engineer. I'll show you a tool I built for this kind of work.
 
@@ -10,11 +10,11 @@ Intro per slide (10–20 s), then the clip narration. Times are positions inside
 
 **Transition:** This is a short guided demo with video. Here is what we'll see.
 
-## Slide 2. Overview
+## Slide 22. Overview
 
-**Intro:** Four parts today. First, setup. Then an alternative to classic debugging on a small test program. Then code insight on a big real class: metrics, logic and path to line. And finally, a transport review with AI.
+**Intro:** Four parts today. First, setup. Then an alternative to classic debugging on a small test program: code flow analysis, a recorded SAP run, the transpiler, and AI that reads the history. Then code insight on a big real class: metrics, logic and path to line. And finally, a transport review with AI.
 
-## Slide 3. Install and set up VERTEX
+## Slide 23. Install and set up VERTEX
 
 **Intro:** Let's start with setup. VERTEX installs from the VS Code Marketplace; then we connect an SAP system and choose an AI model. There is also an Eclipse ADT version with its own update site, but it is out of scope today.
 
@@ -39,7 +39,7 @@ Intro per slide (10–20 s), then the clip narration. Times are positions inside
 
 **Wrap-up (after the clip):** VERTEX is installed, connected to SAP and to an AI model. Now let's use it on a real problem.
 
-## Slide 4. An alternative to classic debugging
+## Slide 24. An alternative to classic debugging
 
 **Intro:** Next, an alternative to classic debugging. We take a small test program, run its scenarios, and find out what goes wrong — with VERTEX views and the AI, without stepping through the debugger line by line.
 
@@ -114,7 +114,7 @@ Intro per slide (10–20 s), then the clip narration. Times are positions inside
 
 **Wrap-up (after the clip):** So we found the cause from the calls, the formula and the recorded run, without stepping through the debugger once.
 
-## Slide 5. Metrics, logic and path to line
+## Slide 25. Metrics, logic and path to line
 
 **Intro:** Beyond one program, VERTEX helps to assess and refactor large code. Metrics show where the complexity is, the logic diagram shows a method's branches, and Path to line shows which conditions lead to a given line.
 
@@ -135,7 +135,7 @@ Intro per slide (10–20 s), then the clip narration. Times are positions inside
 
 **Wrap-up (after the clip):** One program is easy. Metrics, the logic diagram and Path to line help when the code is big and someone else wrote it — or an AI did.
 
-## Slide 6. Review a transport
+## Slide 26. Review a transport
 
 **Intro:** Finally, the review. We open a transport, see what it changes, ask the AI what the changes are for and whether they contain bugs, and give each changed block a verdict.
 
@@ -155,7 +155,7 @@ Intro per slide (10–20 s), then the clip narration. Times are positions inside
 
 **Wrap-up (after the clip):** So the review adds the last step: understand the code, investigate its execution, and check the changes before they go further.
 
-## Slide 7. Key Takeaways
+## Slide 27. Key Takeaways
 
 **Intro:** To sum up, five things to take away. *(The cards appear one by one — one line per click.)*
 
@@ -167,10 +167,10 @@ Intro per slide (10–20 s), then the clip narration. Times are positions inside
 | 4 | REVIEW | Fourth, review before release. You see what a transport changes, ask the AI about its purpose and possible bugs, and approve or decline each block with a comment. |
 | 5 | Banner | And the most important one: don't be afraid to build the plugins you really need. Use AI to vibe-code them — VERTEX itself was built this way. |
 
-## Slide 8. Questions & Answers
+## Questions & Answers
 
 **Intro:** Thank you. I'm happy to take your questions.
 
-## Slide 9. Thank you!
+## Slide 28. Thank you!
 
 **Intro:** All links are on the slide: the repository, the Marketplace page, the Eclipse update site and the demo source. Thank you!
