@@ -4,26 +4,24 @@ Slide numbers follow the Session 1 deck (v3). For each slide: intro, then the cl
 
 ## Slide 21. VERTEX: AI-Powered ABAP Plugins for VS Code & Eclipse
 
-**Intro:** Hi, I'm Yurii Sychov, Lead Software Engineer. I'll show you a tool I built for this kind of work.
+**Intro:** Hi, I'm Yurii Sychov, ABAP developer, and I love building tools for ABAP. For about seven years I built them as open-source tools for SAP GUI: a data explorer, a code explorer, a version explorer, Smart Debugger and an AI assistant. Now all of them are collected in one place — VERTEX Tools.
 
-**What it is:** VERTEX is a set of AI-powered ABAP plugins for VS Code and Eclipse. It helps you understand ABAP code, find the cause of a problem without classic debugging, and review transports — with an AI that works on real data from the SAP system.
-
-**Transition:** This is a short guided demo with video. Here is what we'll see.
+**Transition:** Let me introduce most of them in a short guided demo with video. Here is what we'll see.
 
 ## Slide 22. Overview
 
-**Intro:** Four parts today. First, setup. Then an alternative to classic debugging on a small test program: code flow analysis, a recorded SAP run, the transpiler, and AI that reads the history. Then code insight on a big real class: metrics, logic and path to line. And finally, a transport review with AI.
+**Intro:** First I'll show how to install VERTEX and connect it to SAP and to an LLM. Then a few use cases: an alternative to classic debugging, code insight on a big real class, and a transport review with AI.
 
 ## Slide 23. Install and set up VERTEX
 
-**Intro:** Let's start with setup. VERTEX installs from the VS Code Marketplace; then we connect an SAP system and choose an AI model. There is also an Eclipse ADT version with its own update site, but it is out of scope today.
+**Intro:** There is also a version for Eclipse ADT, with its own update site — the link is on the slide. It is out of scope today, but about ninety percent of the features are the same. Today we use VS Code.
 
 *Clip: 01_install_setup.mp4 — 2:00.*
 
 ### Installing VERTEX from the Marketplace
 | Time | Topic | Text |
 |---|---|---|
-| 0:00–0:11 | Prepare the editor | VERTEX runs inside VS Code. Before installing it, I recommend ABAP Syntax Highlighting, which makes ABAP source easier to read. |
+| 0:00–0:11 | Prepare the editor | I recommend using VERTEX together with ABAP Syntax Highlighting, which makes ABAP source easier to read. |
 | 0:11–0:18 | Optional assistants | The Claude Code and Codex extensions are optional: VERTEX can also use their own command-line tools. |
 | 0:18–0:32 | Install VERTEX | In Extensions, I search for SAP ABAP VERTEX and install it. |
 
