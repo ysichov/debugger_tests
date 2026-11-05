@@ -2,23 +2,27 @@
 
 ## Slide 21. VERTEX: AI-Powered ABAP Plugins for VS Code & Eclipse
 
-Hi, I'm Yurii Sychov, ABAP developer, and I love building tools for ABAP. For about seven years I built them as open-source tools for SAP GUI: code and data explorers, Smart Debugger and an AI assistant. Now all of them are collected in one place — VERTEX Tools.
+Hi, I'm Yurii Sychov, an ABAP developer, and my hobby is building tools for ABAP.
 
-Let me introduce most of them in a short guided demo with video. Here is what we'll see.
+For about seven years, I've been developing open-source tools for SAP GUI: code and data explorers, Smart Debugger, and an AI assistant.
+
+Now, all these tools are brought together in one place — VERTEX Tools.
+
+Let me introduce most of them in a short guided demo with video. 
 
 ## Slide 22. Overview
 
-First I'll show how to install VERTEX and connect it to SAP and to an AI provider. Then a few use cases: an alternative to classic debugging, code insight on a big real class, and a transport review with AI.
+First I'll show how to install VERTEX and connect it to SAP and to an AI provider. Then a few use cases: an alternative to classic debugging, code insight on a big real class, and a transport review with AI assistant.
 
 ## Slide 23. Install and set up VERTEX
 
-There is also a version for Eclipse ADT, with its own update site — the link is on the slide. It is out of scope today, but about ninety percent of the features are the same. Today we use VS Code.
+There is also a version for Eclipse ADT, with its own update site — the link is on the slide. It is out of scope today as about ninety percent of the features are the same. Today we use VS Code.
 
 I recommend using VERTEX together with ABAP Syntax Highlighting, which makes ABAP source easier to read.
 
 The Claude Code and Codex extensions are optional: VERTEX can also use their own command-line tools.
 
-In Extensions, I search for SAP ABAP VERTEX and install it.
+In Extensions, Lets find VERTEX and install it.
 
 After installation, VERTEX appears in the activity bar. I open VERTEX panel to complete the initial configuration.
 
@@ -42,7 +46,7 @@ Next, an alternative to classic debugging. We take a small test program, run its
 
 There are two ways to find SAP objects. The VERTEX Tools button opens an object search: choose the object type, such as a class, program or package, and enter a name or a mask. Here we look for the Z_DEBUGGER_TEST package.
 
-Or type a name, or part of one, in the VERTEX chat. It searches inside the system, without tokens, and opens what it finds.
+Or type a name in the VERTEX chat. It searches inside the system, without tokens, and opens what it finds.
 
 Let’s look inside the package: we have twelve classes and other objects. We’ll test this program, ZVERTEX_DEBUG_LAB, so I open it.
 
@@ -102,7 +106,7 @@ Formula writes the whole calculation out, and below, where each input comes from
 
 We run the program in SAP with the baseline scenario, CLEAN. It stops at the first breakpoint; we switch on Steps & values and continue.
 
-The run is being recorded step by step, with its values. As you can see, it is not fast: debugging SAP over the web from VS Code is quite slow. In Eclipse the same recording is noticeably faster. And the fastest option is the ABAP transpiler, which runs the code locally — I'll show it a bit later.
+The run is being recorded step by step, with its values. As you can see, it is not fast: debugging SAP over the web from VS Code is quite slow. In Eclipse the same recording is faster. And the fastest option is the ABAP transpiler, which runs the code locally — I'll show it a bit later.
 
 ### Formula with recorded values
 
